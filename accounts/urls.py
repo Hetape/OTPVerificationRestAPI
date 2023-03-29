@@ -6,8 +6,6 @@ from knox.views import LogoutView
 
 router = routers.DefaultRouter()
 router.register(r'user-register', RegisterView, basename='task')
-
-
 urlpatterns = [ 
     path('',include(router.urls)),
     path('get-login-otp-mobile/',ValidatePhoneSendOTP.as_view(),name='get-login-otp-mobile'),

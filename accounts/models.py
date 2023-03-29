@@ -39,8 +39,6 @@ class UserManager(BaseUserManager):
         )
         return user
 
-
-
 class User(AbstractBaseUser):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,13}$', message="Up to 13 digits allowed.")
     role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True, blank=True)
@@ -65,7 +63,6 @@ class User(AbstractBaseUser):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
   
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = []
@@ -99,4 +96,3 @@ class User(AbstractBaseUser):
     @property
     def is_superuser(self):
         return self.super
-

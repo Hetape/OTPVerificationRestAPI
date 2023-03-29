@@ -6,7 +6,6 @@ from accounts.models import Role
 User = get_user_model()
 
 # Create your serializers here.
-
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -21,5 +20,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
     def create(self, validated_data):
+  
         user = User.objects.create(**validated_data)
+  
         return user
+

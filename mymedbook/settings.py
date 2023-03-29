@@ -132,7 +132,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 #KNOX AETTINGS
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
 
 REST_KNOX = {

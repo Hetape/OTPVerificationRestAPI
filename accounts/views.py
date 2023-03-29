@@ -7,19 +7,19 @@ from accounts.utils import otp_generator
 from knox.models import AuthToken
 from django.contrib.auth import login
 from rest_framework import permissions, generics, status
-import requests
+import requests,logging
 
 
 User = get_user_model()
-
 # Create your views here.
-
+logger = logging.getLogger(__name__)
 
 class RegisterView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
 
     def create(self, request, *args, **kwargs):
+        logger.info("wefwef")
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
@@ -108,6 +108,7 @@ class VerifyPhoneOTPView(APIView):
         try:
             phone = request.data.get('phone')
             otp = request.data.get('otp')
+            print(phone, otp)
 
             if phone and otp:
                 user = User.objects.filter(phone__iexact=phone)
@@ -153,9 +154,11 @@ class LogoutView(APIView):
             return Response({
                 'message': 'Logout successfully',
                 'status': status.HTTP_200_OK,
+                
             })
         except Exception as e:
             return Response({
                 'message': str(e),
                 'status': status.HTTP_400_BAD_REQUEST,
+                
             })
